@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpBackend } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from "rxjs/internal/operators";
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -13,7 +13,8 @@ export class AuthService {
   private API_URL = environment.API_URL_DEV;
   private helper: JwtHelperService;
 
-  constructor(private http: HttpClient) {
+  constructor(handler: HttpBackend, private http: HttpClient) {
+    this.http = new HttpClient(handler);
     this.helper = new JwtHelperService();
   }
 
