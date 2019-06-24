@@ -19,4 +19,8 @@ export class User {
     deleted: boolean;
 
     workspaces: Workspace[];
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

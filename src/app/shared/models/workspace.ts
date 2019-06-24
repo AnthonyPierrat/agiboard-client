@@ -15,4 +15,8 @@ export class Workspace {
     lastUpdate: Date
 
     deleted: boolean;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }
