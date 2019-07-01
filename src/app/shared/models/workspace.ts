@@ -1,4 +1,5 @@
 import { User } from './user';
+import { Project } from './project';
 
 export class Workspace {
 
@@ -15,6 +16,8 @@ export class Workspace {
     lastUpdate: Date
 
     deleted: boolean;
+
+    projects: Project[];
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
