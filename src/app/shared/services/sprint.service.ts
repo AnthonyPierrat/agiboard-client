@@ -1,28 +1,27 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Workspace } from '../models/workspace';
-import { catchError } from 'rxjs/internal/operators';
-import { HttpErrorResponse, HttpClient } from '@angular/common/http';
-import { Project } from '../models/project';
+import { catchError } from "rxjs/internal/operators";
+import { Sprint } from '../models/sprint';
+import { Task } from '../models/task';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
+export class SprintService {
 
   private API_URL = environment.API_URL_DEV;
 
+
   constructor(private http: HttpClient) { }
 
-  public addProject(project: Project): Observable<Project> {
-    return this.http.post<Project>(`${this.API_URL}/projects`, project).pipe(catchError(this.handleError));
+
+
+  public getSprint(id: number): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.API_URL}/sprints/${id}`).pipe(catchError(this.handleError));
   }
 
-  public getProject(idProject: number): Observable<Project> {
-    return this.http.get<Project>(`${this.API_URL}/projects/${idProject}`).pipe(catchError(this.handleError));
-  }
-  
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
