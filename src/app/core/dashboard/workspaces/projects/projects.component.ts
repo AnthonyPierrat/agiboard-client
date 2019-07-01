@@ -68,6 +68,7 @@ export class ProjectsComponent implements OnInit {
     project.startDate = this.projectForm.value.startDate;
     project.endDate = this.projectForm.value.endDate;
     project.workspace = this.workspace;
+    project.userProjects = [];
     this.addProject(project);
   }
 

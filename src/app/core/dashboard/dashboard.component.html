@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-4">
     <app-workspaces *ngIf="dataAvailable && workspaces; else loading" [workspaces]="workspaces"></app-workspaces>
     <ng-template #loading>
         <div class="spinner-border text-primary" role="status">
