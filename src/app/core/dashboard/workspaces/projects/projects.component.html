@@ -1,0 +1,119 @@
+<div class="row mb-4">
+  <div *ngIf="workspace.projects && workspace.projects.length > 0">
+    <div class="card-deck">
+      <div *ngFor="let project of workspace.projects">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{project.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{project.description}}</h6>
+            <a [routerLink]="['projects',project.id]" class="btn btn-primary text-white">See
+              project</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card shadow text-center w-25 h-100">
+  <div class="card-body">
+    <div class="row mt-4">
+      <div class="col mb-3">
+        <button data-toggle="modal" data-target="#modalProjectForm" type="button"
+          class="btn-sm btn-light stretched-link"><i class="fas fa-plus text-primary mr-2"></i>New project</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalProjectForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">New Project</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmitProject()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="projectNameCtrl" type="text" class="form-control" id="projectName"
+                    aria-describedby="projectHelp" placeholder="Name">
+                </div>
+                <div *ngIf="projectNameCtrl.invalid && (projectNameCtrl.dirty || projectNameCtrl.touched)"
+                  class="alert alert-danger p-2">
+                  <div *ngIf="projectNameCtrl.errors.required">
+                    Name is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="projectDescriptionCtrl" type="text" class="form-control" id="projectDescription"
+                    placeholder="Description">
+                </div>
+                <div
+                  *ngIf="projectDescriptionCtrl.invalid && (projectDescriptionCtrl.dirty || projectDescriptionCtrl.touched)"
+                  class="alert alert-danger p-2">
+
+                  <div *ngIf="projectDescriptionCtrl.errors.required">
+                    Description is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="projectBudgetCtrl" type="text" class="form-control" id="projectBudget"
+                    placeholder="Budget">
+                </div>
+                <div *ngIf="projectBudgetCtrl.invalid && (projectBudgetCtrl.dirty || projectBudgetCtrl.touched)"
+                  class="alert alert-danger p-2">
+
+                  <div *ngIf="projectBudgetCtrl.errors.required">
+                    Budget is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="projectStartDateCtrl" type="date" class="form-control" id="projectStartDate">
+                </div>
+                <div
+                  *ngIf="projectStartDateCtrl.invalid && (projectStartDateCtrl.dirty || projectStartDateCtrl.touched)"
+                  class="alert alert-danger p-2">
+
+                  <div *ngIf="projectStartDateCtrl.errors.required">
+                    Start Date is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="projectEndDateCtrl" type="date" class="form-control" id="projectEndDate">
+                </div>
+                <div *ngIf="projectEndDateCtrl.invalid && (projectEndDateCtrl.dirty || projectEndDateCtrl.touched)"
+                  class="alert alert-danger p-2">
+
+                  <div *ngIf="projectEndDateCtrl.errors.required">
+                    End Date is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button [disabled]="!projectForm.valid" type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
