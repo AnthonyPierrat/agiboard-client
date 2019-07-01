@@ -1,4 +1,5 @@
 import { Workspace } from "./workspace";
+import { Sprint } from "./sprint";
 import { UserProject } from "./userProject";
 
 export class Project {
@@ -10,6 +11,8 @@ export class Project {
     description: string;
 
     workspace: Workspace;
+
+    sprints: Sprint[];
 
     userProjects: UserProject[];
 
