@@ -16,6 +16,8 @@ import { HomeComponent } from './core/home/home.component';
 import { SignupComponent } from './core/auth/signup/signup.component';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { WorkspacesComponent } from './core/dashboard/workspaces/workspaces.component';
+import { ProjectsComponent } from './core/dashboard/workspaces/projects/projects.component';
+import { ProjectViewComponent } from './core/dashboard/project-view/project-view.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { WorkspacesComponent } from './core/dashboard/workspaces/workspaces.comp
     HomeComponent,
     SignupComponent,
     WorkspacesComponent,
+    ProjectsComponent,
+    ProjectViewComponent,
   ],
   imports: [
     BrowserModule,
