@@ -1,3 +1,8 @@
+<div  *ngIf="sprints.length == 0" 
+      class="alert alert-warning white-text mt-4 text-center"
+      role="alert"> There are currently no sprints for this project</div>
+
+<div *ngIf="sprints.length != 0">
 <form class="w-25 p-3">
     <div>
       <label for="selectSprint">Select a sprint</label>
@@ -36,3 +41,4 @@
     </tr> 
   </tbody>
 </table>
+</div>
