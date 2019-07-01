@@ -56,6 +56,7 @@ export class WorkspacesComponent implements OnInit {
     workspace.name = this.workspaceForm.value.name;
     workspace.description = this.workspaceForm.value.description;
     workspace.owner = this.currentUser.id;
+    workspace.projects = [];
     this.addWorkspace(workspace);
 
   }
