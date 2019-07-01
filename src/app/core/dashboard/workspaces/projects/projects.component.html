@@ -1,28 +1,31 @@
-<div class="row mb-4">
-  <div *ngIf="workspace.projects && workspace.projects.length > 0">
-    <div class="card-deck">
-      <div *ngFor="let project of workspace.projects">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{project.name}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{project.description}}</h6>
-            <a [routerLink]="['projects',project.id]" class="btn btn-primary text-white">See
-              project</a>
-
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="row">
+  <div class="col mb-4">
+    <button data-toggle="modal" data-target="#modalProjectForm" type="button" class="btn btn-primary"><i
+        class="fas fa-plus text-white mr-2"></i>New project</button>
   </div>
-</div>
-
-
-<div class="card shadow text-center w-25 h-100">
-  <div class="card-body">
-    <div class="row mt-4">
-      <div class="col mb-3">
-        <button data-toggle="modal" data-target="#modalProjectForm" type="button"
-          class="btn-sm btn-light stretched-link"><i class="fas fa-plus text-primary mr-2"></i>New project</button>
+  <div *ngIf="workspace.projects && workspace.projects.length > 0">
+    <div class="card-columns">
+      <div class="card shadow-sm" *ngFor="let project of workspace.projects">
+        <div class="card-header ">{{project.name}}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{project.description}}</h5>
+          <div class="card-text">
+            <div class="row">
+              <div class="col">
+                <span class="badge badge-secondary">Budget {{project.budget}}$</span>
+              </div>
+              <div class="col">
+                <span *ngIf="!project.userProjects; else hasMember" class="badge badge-dark">Members 0</span>
+                <ng-template #hasMember>
+                  <span class="badge badge-dark">Members {{project.userProjects.length}}</span>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <a [routerLink]="['projects',project.id]" class="btn btn-outline-primary mt-3">See
+            project</a>
+          <p class="card-text mt-4"><small class="text-muted">end date {{project.endDate | date }}</small></p>
+        </div>
       </div>
     </div>
   </div>
