@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-project-view-navbar',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectViewNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute
+  ) { }
+
+  idProject: number;
 
   ngOnInit() {
+    this.idProject = Number.parseInt(this.route.snapshot.paramMap.get("projectId"));
   }
-
 }

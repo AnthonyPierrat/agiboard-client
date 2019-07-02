@@ -1,14 +1,6 @@
-<ul class="nav nav-pills nav-fill">
-  <li class="nav-item">
-    <a class="nav-link active" [routerLink]="['sprints']" >sprints</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" [routerLink]="['events']" >events</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" [routerLink]="['tasks']" >tasks</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" [routerLink]="['members']" >members</a>
-  </li>
-</ul> 
+<nav class="nav nav-pills nav-fill">
+  <a class="nav-item nav-link" href="/dashboard/projects/{{idProject}}/sprints">Sprints</a>
+  <a class="nav-item nav-link" href="/dashboard/projects/{{idProject}}/events">Events</a>
+  <a class="nav-item nav-link" href="/dashboard/projects/{{idProject}}/tasks">Tasks</a>
+  <a class="nav-item nav-link" href="/dashboard/projects/{{idProject}}/members">Members</a>
+</nav>
