@@ -7,27 +7,37 @@
       
 <!-- Show table tasks of sprint if there is at least one sprint -->
 <div class="container">
-<div *ngIf="sprints!=null && sprints.length != 0">
-<form class="w-25 p-3 float-left my-4">
-    <div>
-      <label for="selectSprint">Select a sprint</label>
-      <select class="form-control" id="selectSprint"
-              *ngIf="selectSprint"
-              [(ngModel)]="selectSprint"
-              (ngModelChange)="changeSprint($event)"
-              name="titleSelectSprint">
-        <option *ngFor="let sprint of sprints"
-                [value]="sprint.id">{{sprint.name}}</option>
-      </select>
+  <div *ngIf="sprints!=null && sprints.length != 0">
+  <form class="w-25 p-3 float-left my-4">
+      <div>
+        <label for="selectSprint">Select a sprint</label>
+        <select class="form-control" id="selectSprint"
+                *ngIf="selectSprint"
+                [(ngModel)]="selectSprint"
+                (ngModelChange)="changeSprint($event)"
+                name="titleSelectSprint">
+          <option *ngFor="let sprint of sprints"
+                  [value]="sprint.id">{{sprint.name}}</option>
+        </select>
+      </div>
+  </form>
+  </div>
+
+  <div class="float-right">
+  <!-- Button to open a model to add a sprint -->
+    <button data-toggle="modal" data-target="#modalSprintForm" type="button" class="btn btn-primary my-1">
+    <i class="fas fa-plus text-white mr-2"></i>New sprint</button>
+  
+
+    <div *ngIf="sprintId!=null">
+      <!-- Button to open a model to add a task -->
+      <button data-toggle="modal" data-target="#modalTaskForm" type="button" class="btn btn-primary my-1">
+        <i class="fas fa-plus text-white mr-2"></i>New Task</button>
     </div>
-</form>
+  </div>
+    
 </div>
 
- <!-- Button to open a model to add a sprint -->
- <button data-toggle="modal" data-target="#modalSprintForm" type="button" class="btn btn-primary float-right my-4">
-   <i class="fas fa-plus text-white mr-2"></i>New sprint</button>
-</div>
-   
 
 <div *ngIf="sprints!=null && sprints.length != 0">
 <table class="table">
@@ -58,7 +68,7 @@
 
 
 
-<!-- Structure of modal -->
+<!-- Structure of modal add Sprint-->
 <div class="modal fade" id="modalSprintForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -76,7 +86,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <input [formControl]="sprintNameCtrl" type="text" class="form-control" id="sprintName"
-                    aria-describedby="projectHelp" placeholder="Name">
+                    aria-describedby="sprintHelp" placeholder="Name">
                 </div>
                 <div *ngIf="sprintNameCtrl.invalid && (sprintNameCtrl.dirty || sprintNameCtrl.touched)"
                   class="alert alert-danger p-2">
@@ -118,6 +128,45 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button [disabled]="!sprintForm.valid" type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Structure of modal add Task-->
+<div class="modal fade" id="modalTaskForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">New Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmitTask()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="taskDescriptionCtrl" type="text" class="form-control" id="taskDescription"
+                    aria-describedby="taskkHelp" placeholder="Description">
+                </div>
+                <div *ngIf="taskDescriptionCtrl.invalid && (taskDescriptionCtrl.dirty || taskDescriptionCtrl.touched)"
+                  class="alert alert-danger p-2">
+                  <div *ngIf="taskDescriptionCtrl.errors.required">
+                    Description is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button [disabled]="!taskForm.valid" type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
     </div>
