@@ -8,7 +8,6 @@ import { Task } from 'src/app/shared/models/task';
 import { Status } from 'src/app/shared/enums/status.enum';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { type } from 'os';
 
 @Component({
   selector: 'app-show-task-table',
