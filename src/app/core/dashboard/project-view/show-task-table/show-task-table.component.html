@@ -17,8 +17,8 @@
     </div>
 </form>
 
-<table class="table">
-  <thead class="thead-dark">
+<table class="table shadow-sm p-3 mb-5 bg-white rounded">
+  <thead class="thead-light">
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Description</th>
@@ -26,10 +26,16 @@
       <th scope="col">Members</th>
       <th scope="col">Creation Date</th>
       <th scope="col">Last update</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody *ngIf="tasks">
-    <tr *ngFor="let task of tasks">
+    <tr *ngFor="let task of tasks" [ngClass]="{
+        'bg-success': task.status == 1,
+        'bg-danger': task.status == 2,
+        'bg-warning': task.status == 3,
+        'bg-info': task.status == 4,
+        'bg-primary': task.status == 5}">
         <td>{{task.id}}</td>
         <td>{{task.description}}</td>
         <td>{{ Status[task.status] }}</td>
@@ -38,6 +44,8 @@
         </td>
         <td>{{task.creationDate | date : 'medium'}}</td>
         <td>{{task.lastUpdate | date : 'medium'}}</td>
+        <td><button type="button" class="btn btn-light"><i
+          class="far fa-edit mr-2"></i>EDIT</button></td>
     </tr> 
   </tbody>
 </table>
