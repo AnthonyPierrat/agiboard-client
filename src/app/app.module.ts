@@ -19,6 +19,7 @@ import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { WorkspacesComponent } from './core/dashboard/workspaces/workspaces.component';
 import { ProjectsComponent } from './core/dashboard/workspaces/projects/projects.component';
 import { ProjectViewComponent } from './core/dashboard/project-view/project-view.component';
+import { ProjectViewNavbarComponent } from './core/dashboard/project-view/project-view-navbar/project-view-navbar.component';
 import { ShowTaskTableComponent } from './core/dashboard/project-view/show-task-table/show-task-table.component';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ShowTaskTableComponent } from './core/dashboard/project-view/show-task-
     WorkspacesComponent,
     ProjectsComponent,
     ProjectViewComponent,
+    ProjectViewNavbarComponent,
     ShowTaskTableComponent,
   ],
   imports: [
