@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col mb-4">
-    <button data-toggle="modal" data-target="#modalProjectForm" type="button" class="btn btn-primary"><i
+    <button data-toggle="modal" [attr.data-target]="'#modalProjectForm' + workspace.id" type="button" class="btn btn-primary"><i
         class="fas fa-plus text-white mr-2"></i>New project</button>
   </div>
   <div *ngIf="workspace.projects && workspace.projects.length > 0">
@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="modalProjectForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+<div class="modal fade" [attr.id]="'modalProjectForm' + workspace.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
