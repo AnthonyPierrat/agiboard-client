@@ -120,7 +120,7 @@ export class ShowTaskTableComponent implements OnInit {
       (result: any) => {
         this.sprints.push(result.data);
         this.initSelectBox();
-        this.changeSprint(result.data);
+        this.changeSprint(result.data.id);
       },
       error => {
         this.toastr.error(error, 'Sprint');
