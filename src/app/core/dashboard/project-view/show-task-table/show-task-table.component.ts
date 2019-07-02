@@ -18,22 +18,22 @@ import { ToastrService } from 'ngx-toastr';
 export class ShowTaskTableComponent implements OnInit {
 
   constructor(
-      private route: ActivatedRoute,
-      private sprintService: SprintService,
-      private projectService: ProjectService,
-      private taskService: TaskService,
-      private toastr: ToastrService
-    ) { }
+    private route: ActivatedRoute,
+    private sprintService: SprintService,
+    private projectService: ProjectService,
+    private taskService: TaskService,
+    private toastr: ToastrService
+  ) { }
 
-  titleSelectSprint:string;
+  titleSelectSprint: string;
   idProject: number;
   sprints: Sprint[];
   project: Project;
   selectSprint: Sprint;
-  tasks : Task[];
+  tasks: Task[];
   Status: typeof Status = Status;
-  sprintId : number;
-  sprintSelected : Sprint;
+  sprintId: number;
+  sprintSelected: Sprint;
 
   //modal create sprint
   private sprintForm: FormGroup;
@@ -51,15 +51,15 @@ export class ShowTaskTableComponent implements OnInit {
     this.idProject = Number.parseInt(this.route.snapshot.paramMap.get("projectId"));
     this.projectService.getProject(this.idProject).subscribe(
       (result: any) => {
-      this.project = result.data;
-      this.sprints = this.project.sprints;
-    }, 
-    error => {
+        this.project = result.data;
+        this.sprints = this.project.sprints;
+      },
+      error => {
 
-    },
-    () => {
-      this.initSelectBox();
-    });
+      },
+      () => {
+        this.initSelectBox();
+      });
 
 
     //init modal sprint
@@ -79,23 +79,23 @@ export class ShowTaskTableComponent implements OnInit {
     });
   }
 
-  private initSelectBox(){
+  private initSelectBox() {
     this.selectSprint = this.sprints[0];
   }
 
-  private changeSprint(changed){
+  private changeSprint(changed) {
     this.sprintId = changed;
     this.sprintService.getSprint(changed).subscribe(
       (result: any) => {
         //this.selectSprint = result.data;
         this.sprintSelected = result.data;
         this.tasks = result.data.tasks;
-      }, 
+      },
       error => {
-  
+
       },
       () => {
-    });
+      });
   }
 
 
