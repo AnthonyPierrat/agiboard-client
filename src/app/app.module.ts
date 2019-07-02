@@ -21,6 +21,10 @@ import { ProjectsComponent } from './core/dashboard/workspaces/projects/projects
 import { ProjectViewComponent } from './core/dashboard/project-view/project-view.component';
 import { ProjectViewNavbarComponent } from './core/dashboard/project-view/project-view-navbar/project-view-navbar.component';
 import { ShowTaskTableComponent } from './core/dashboard/project-view/show-task-table/show-task-table.component';
+import { ShowEventCalendarComponent } from './core/dashboard/project-view/show-event-calendar/show-event-calendar.component';
+
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,7 @@ import { ShowTaskTableComponent } from './core/dashboard/project-view/show-task-
     ProjectViewComponent,
     ProjectViewNavbarComponent,
     ShowTaskTableComponent,
+    ShowEventCalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,11 @@ import { ShowTaskTableComponent } from './core/dashboard/project-view/show-task-
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   providers: [
     AuthGuard,

@@ -81,7 +81,6 @@ export class ShowTaskTableComponent implements OnInit {
 
   private initSelectBox(){
     this.selectSprint = this.sprints[0];
-
   }
 
   private changeSprint(changed){
