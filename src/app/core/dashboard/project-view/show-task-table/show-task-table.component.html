@@ -1,4 +1,4 @@
-<h3 class="mb-3">{{ project.name }}</h3>
+<h3 class="mb-3" *ngIf="project!=null">{{ project.name }}</h3>
 
 <div  *ngIf="sprints==null || sprints.length == 0" 
       class="alert alert-warning white-text mt-4 text-center"
@@ -8,7 +8,7 @@
 <!-- Show table tasks of sprint if there is at least one sprint -->
 <div class="container">
 <div *ngIf="sprints!=null && sprints.length != 0">
-<form class="w-25 p-3"  class="float-left my-4">
+<form class="w-25 p-3 float-left my-4">
     <div>
       <label for="selectSprint">Select a sprint</label>
       <select class="form-control" id="selectSprint"
