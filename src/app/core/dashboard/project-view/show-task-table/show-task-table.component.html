@@ -1,9 +1,14 @@
-<div  *ngIf="sprints.length == 0" 
+<h3 class="mb-3">{{ project.name }}</h3>
+
+<div  *ngIf="sprints==null || sprints.length == 0" 
       class="alert alert-warning white-text mt-4 text-center"
       role="alert"> There are currently no sprints for this project</div>
 
-<div *ngIf="sprints.length != 0">
-<form class="w-25 p-3">
+      
+<!-- Show table tasks of sprint if there is at least one sprint -->
+<div class="container">
+<div *ngIf="sprints!=null && sprints.length != 0">
+<form class="w-25 p-3"  class="float-left my-4">
     <div>
       <label for="selectSprint">Select a sprint</label>
       <select class="form-control" id="selectSprint"
@@ -16,7 +21,15 @@
       </select>
     </div>
 </form>
+</div>
 
+ <!-- Button to open a model to add a sprint -->
+ <button data-toggle="modal" data-target="#modalSprintForm" type="button" class="btn btn-primary float-right my-4">
+   <i class="fas fa-plus text-white mr-2"></i>New sprint</button>
+</div>
+   
+
+<div *ngIf="sprints!=null && sprints.length != 0">
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -41,4 +54,72 @@
     </tr> 
   </tbody>
 </table>
+</div>
+
+
+
+<!-- Structure of modal -->
+<div class="modal fade" id="modalSprintForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">New Sprint</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="sprintForm" (ngSubmit)="onSubmitSprint()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="sprintNameCtrl" type="text" class="form-control" id="sprintName"
+                    aria-describedby="projectHelp" placeholder="Name">
+                </div>
+                <div *ngIf="sprintNameCtrl.invalid && (sprintNameCtrl.dirty || sprintNameCtrl.touched)"
+                  class="alert alert-danger p-2">
+                  <div *ngIf="sprintNameCtrl.errors.required">
+                    Name is required.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="sprintStartDateCtrl" type="date" class="form-control" id="sprintStartDate">
+                </div>
+                <div
+                  *ngIf="sprintStartDateCtrl.invalid && (sprintStartDateCtrl.dirty || sprintStartDateCtrl.touched)"
+                  class="alert alert-danger p-2">
+
+                  <div *ngIf="sprintStartDateCtrl.errors.required">
+                    Start Date is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="sprintEndDateCtrl" type="date" class="form-control" id="sprintEndDate">
+                </div>
+                <div *ngIf="sprintEndDateCtrl.invalid && (sprintEndDateCtrl.dirty || sprintEndDateCtrl.touched)"
+                  class="alert alert-danger p-2">
+
+                  <div *ngIf="sprintEndDateCtrl.errors.required">
+                    End Date is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button [disabled]="!sprintForm.valid" type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

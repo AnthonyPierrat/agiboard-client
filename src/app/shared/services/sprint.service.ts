@@ -18,8 +18,12 @@ export class SprintService {
 
 
 
-  public getSprint(id: number): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.API_URL}/sprints/${id}`).pipe(catchError(this.handleError));
+  public getSprint(id: number): Observable<Sprint> {
+    return this.http.get<Sprint>(`${this.API_URL}/sprints/${id}`).pipe(catchError(this.handleError));
+  }
+
+  public addSprint(sprint: Sprint): Observable<Sprint> {
+    return this.http.post<Sprint>(`${this.API_URL}/sprints`, sprint).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
