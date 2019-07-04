@@ -9,6 +9,7 @@ import { ProjectViewComponent } from './core/dashboard/project-view/project-view
 import { ProjectViewNavbarComponent } from './core/dashboard/project-view/project-view-navbar/project-view-navbar.component';
 import { ShowTaskTableComponent } from './core/dashboard/project-view/show-task-table/show-task-table.component';
 import { ShowEventCalendarComponent } from './core/dashboard/project-view/show-event-calendar/show-event-calendar.component';
+import { ProjectMemberComponent } from './core/dashboard/project-view/project-member/project-member.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -16,9 +17,9 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/projects/:projectId', component: ProjectViewComponent },
-  { path: 'dashboard/projects/:projectId/events', component: ShowEventCalendarComponent},
-  { path: 'dashboard/projects/:projectId/members', component: ProjectViewComponent},
-  { path: 'dashboard/projects/:projectId/sprints', component: ShowTaskTableComponent}
+  { path: 'dashboard/projects/:projectId/events', component: ShowEventCalendarComponent },
+  { path: 'dashboard/projects/:projectId/sprints', component: ShowTaskTableComponent },
+  { path: 'dashboard/projects/:projectId/members', component: ProjectMemberComponent },
 ];
 
 @NgModule({

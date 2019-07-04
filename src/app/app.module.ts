@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgSelect2Module } from 'ng-select2';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,9 +23,9 @@ import { ProjectViewComponent } from './core/dashboard/project-view/project-view
 import { ProjectViewNavbarComponent } from './core/dashboard/project-view/project-view-navbar/project-view-navbar.component';
 import { ShowTaskTableComponent } from './core/dashboard/project-view/show-task-table/show-task-table.component';
 import { ShowEventCalendarComponent } from './core/dashboard/project-view/show-event-calendar/show-event-calendar.component';
-
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { ProjectMemberComponent } from './core/dashboard/project-view/project-member/project-member.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     ProjectViewNavbarComponent,
     ShowTaskTableComponent,
     ShowEventCalendarComponent,
+    ProjectMemberComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    NgSelect2Module,
   ],
   providers: [
     AuthGuard,

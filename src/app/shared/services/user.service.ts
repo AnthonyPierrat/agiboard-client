@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from "rxjs/internal/operators";
 import { Workspace } from '../models/workspace';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class UserService {
 
   public getUserWorkspaces(id: number): Observable<Workspace[]> {
     return this.http.get<Workspace[]>(`${this.API_URL}/users/${id}/workspaces`).pipe(catchError(this.handleError));
+  }
+
+  public getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.API_URL}/users`).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
