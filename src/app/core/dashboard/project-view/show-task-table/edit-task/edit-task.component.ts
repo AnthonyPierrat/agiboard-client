@@ -67,19 +67,20 @@ export class EditTaskComponent implements OnInit {
   }
 
   onSubmitTask() {
-    if(this.taskForm.value.members > 0){
+    if (this.taskForm.value.members > 0) {
       this.task.members = this.taskForm.value.members;
     }
     this.task.status = this.taskForm.value.status;
     console.log(this.task);
     this.taskService.updateTask(this.task).subscribe(
       (result: any) => {
-        
+
       },
       error => {
         this.toastr.error(error, 'Task');
       },
       () => {
+        window.location.reload();
         this.toastr.success('Task updated', 'Task');
       }
     )

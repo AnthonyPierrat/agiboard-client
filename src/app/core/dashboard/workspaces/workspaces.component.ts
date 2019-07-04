@@ -44,6 +44,7 @@ export class WorkspacesComponent implements OnInit {
         this.toastr.error(error, 'Workspace');
       },
       () => {
+        window.location.reload();
         this.toastr.success('New workspace added', 'Workspace');
       }
     )

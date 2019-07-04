@@ -52,6 +52,7 @@ export class ProjectsComponent implements OnInit {
         this.toastr.error(error, 'Project');
       },
       () => {
+        window.location.reload();
         this.toastr.success('New project added', 'Project');
       }
     )
