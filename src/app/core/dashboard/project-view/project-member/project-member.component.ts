@@ -51,11 +51,13 @@ export class ProjectMemberComponent implements OnInit {
     this.getMembers();
     this.getUsers();
     this.getProject();
+    this.members = [];
   }
 
   getMembers() {
     this.projectService.getMembers(this.projectId).subscribe((result: any) => {
-      this.members = result.data;
+      if(result.data[0].user && result.data[0].project)
+        this.members = result.data;
     });
   }
 
