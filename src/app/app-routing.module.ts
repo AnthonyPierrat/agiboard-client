@@ -10,6 +10,7 @@ import { ProjectViewNavbarComponent } from './core/dashboard/project-view/projec
 import { ShowTaskTableComponent } from './core/dashboard/project-view/show-task-table/show-task-table.component';
 import { ShowEventCalendarComponent } from './core/dashboard/project-view/show-event-calendar/show-event-calendar.component';
 import { ProjectMemberComponent } from './core/dashboard/project-view/project-member/project-member.component';
+import { EditTaskComponent } from './core/dashboard/project-view/show-task-table/edit-task/edit-task.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
