@@ -26,6 +26,7 @@ import { ShowEventCalendarComponent } from './core/dashboard/project-view/show-e
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ProjectMemberComponent } from './core/dashboard/project-view/project-member/project-member.component';
+import { EditTaskComponent } from './core/dashboard/project-view/show-task-table/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ProjectMemberComponent } from './core/dashboard/project-view/project-me
     ShowTaskTableComponent,
     ShowEventCalendarComponent,
     ProjectMemberComponent,
+    EditTaskComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,10 @@ export class TaskService {
     return this.http.post<Task>(`${this.API_URL}/tasks`, task).pipe(catchError(this.handleError));
   }
 
+  public updateTask(task: Task): Observable<Task> {
+    return this.http.put<Task>(`${this.API_URL}/tasks/${task.id}`, task).pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
