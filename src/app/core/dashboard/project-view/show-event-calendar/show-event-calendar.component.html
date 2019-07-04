@@ -1,0 +1,114 @@
+<app-project-view-navbar></app-project-view-navbar>
+
+<div class="container">
+<h3 class="mb-3" *ngIf="project!=null">{{ project.name }}</h3>
+
+<div  *ngIf="sprints==null || sprints.length == 0" 
+      class="alert alert-warning white-text mt-4 text-center"
+      role="alert"> There are currently no sprints for this project</div>
+
+<div clas="container">
+  <div class="col">
+    <div class="float-right">
+      <div *ngIf="sprintId!=null">
+        <!-- Button to open a model to add a task -->
+        <button data-toggle="modal" data-target="#modalEventForm" type="button" class="btn btn-primary my-1">
+          <i class="fas fa-plus text-white mr-2"></i>New Event</button>
+      </div>
+    </div>
+    <div *ngIf="sprints!=null && sprints.length != 0">
+      <form class="w-25 p-3 my-4">
+          <div>
+            <label for="selectSprint">Select a sprint</label>
+            <select class="form-control" id="selectSprint"
+                    *ngIf="selectSprint"
+                    [(ngModel)]="selectSprint"
+                    (ngModelChange)="changeSprint($event)"
+                    name="titleSelectSprint">
+              <option *ngFor="let sprint of sprints"
+                      [value]="sprint.id">{{sprint.name}}</option>
+            </select>
+          </div>
+      </form>
+    </div>
+    <br>
+      <div [ngSwitch]="view" >
+          <mwl-calendar-month-view
+            [viewDate]="viewDate"
+            [events]="calendarEvents"
+            [refresh]="refresh"
+            [activeDayIsOpen]="activeDayIsOpen"
+            (dayClicked)="dayClicked($event.day)"
+          >
+          </mwl-calendar-month-view>
+      </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Structure of modal add Sprint-->
+<div class="modal fade" id="modalEventForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">New Sprint</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="eventForm" (ngSubmit)="onSubmitEvent()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="eventNameCtrl" type="text" class="form-control" id="eventName"
+                    aria-describedby="eventHelp" placeholder="Name">
+                </div>
+                <div *ngIf="eventNameCtrl.invalid && (eventNameCtrl.dirty || eventNameCtrl.touched)"
+                  class="alert alert-danger p-2">
+                  <div *ngIf="eventNameCtrl.errors.required">
+                    Description is required.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="eventStartDateCtrl" type="date" class="form-control" id="eventStartDate">
+                </div>
+                <div
+                  *ngIf="eventStartDateCtrl.invalid && (eventStartDateCtrl.dirty || eventStartDateCtrl.touched)"
+                  class="alert alert-danger p-2">
+
+                  <div *ngIf="eventStartDateCtrl.errors.required">
+                    Start Date is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <input [formControl]="eventEndDateCtrl" type="date" class="form-control" id="eventEndDate">
+                </div>
+                <div *ngIf="eventEndDateCtrl.invalid && (eventEndDateCtrl.dirty || eventEndDateCtrl.touched)"
+                  class="alert alert-danger p-2">
+
+                  <div *ngIf="eventEndDateCtrl.errors.required">
+                    End Date is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button [disabled]="!eventForm.valid" type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
