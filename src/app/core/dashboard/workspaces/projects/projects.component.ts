@@ -5,6 +5,8 @@ import { Workspace } from 'src/app/shared/models/workspace';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { ToastrService } from 'ngx-toastr';
 
+declare var $: any;
+
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -55,7 +57,7 @@ export class ProjectsComponent implements OnInit {
     )
   }
 
-  onSubmitProject() {
+  onSubmitProject(id: string) {
     // stop here if form is invalid
     if (this.projectForm.invalid) {
       return;
@@ -70,6 +72,9 @@ export class ProjectsComponent implements OnInit {
     project.workspace = this.workspace;
     project.userProjects = [];
     this.addProject(project);
+    this.projectForm.reset();
+    console.log(id);
+    $('#modalWorkspaceForm' + id).modal('hide');
   }
 
 }

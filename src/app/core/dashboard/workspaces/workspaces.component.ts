@@ -5,6 +5,8 @@ import { WorkspaceService } from 'src/app/shared/services/workspace.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
+declare var $: any;
+
 @Component({
   selector: 'app-workspaces',
   templateUrl: './workspaces.component.html',
@@ -58,7 +60,7 @@ export class WorkspacesComponent implements OnInit {
     workspace.owner = this.currentUser.id;
     workspace.projects = [];
     this.addWorkspace(workspace);
-
+    this.workspaceForm.reset();
+    $('#modalWorkspaceForm').modal('hide');
   }
-
 }
