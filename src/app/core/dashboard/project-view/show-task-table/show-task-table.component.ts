@@ -34,6 +34,7 @@ export class ShowTaskTableComponent implements OnInit {
   Status: typeof Status = Status;
   sprintId: number;
   sprintSelected: Sprint;
+  selectedTask: Task;
 
   //modal create sprint
   private sprintForm: FormGroup;
@@ -157,5 +158,10 @@ export class ShowTaskTableComponent implements OnInit {
         this.toastr.success('New task added', 'Task');
       }
     )
+  }
+
+  onChangeTask(task: Task) {
+    this.selectedTask = task;
+    console.log(this.selectedTask);
   }
 }
